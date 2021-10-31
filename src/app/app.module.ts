@@ -14,6 +14,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { ShowSortedListComponent } from './show-sorted-list/show-sorted-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatButtonModule} from '@angular/material/button';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatSelectModule,
     NgbModule,
     MatListModule ,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [DeckCardsService],

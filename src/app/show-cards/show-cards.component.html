@@ -1,32 +1,15 @@
-<!-- 
-    <div class="card">
-        <div class="header">
-          <h2>My Headline</h2>
-        </div>
-        <hr>
-        <div class="body">
-          <select>
-            <option *ngFor="let arr of arrayCards" [value]="arr"></option>
-          </select>
-             
-          <p>
-          </p>
-          <ng-content></ng-content>
-        </div>
-        <hr>
-        <div class="footer">
-          <div>My Footer 2</div>
-      </div>
-      
-</div> -->
-<mat-card>
+<mat-card class="m-md-5">
 
 
-<div class="header">
-  <h1>Sorting Of Deck Of Cards</h1>
-</div>
-<div>
-  <div class="body">
+<mat-card-header>
+  <mat-card-title>Sorting the Deck Of Cards</mat-card-title>
+</mat-card-header>
+<mat-divider></mat-divider>
+
+ 
+
+<mat-card-content>
+  <div class="row p-3 justify-content-sm-center justify-content-sm-end">
     <mat-form-field appearance="fill">
       <mat-label>Select Cards</mat-label>
       <div>
@@ -36,19 +19,26 @@
     </div>
     </mat-form-field>
   </div>
-  
-  <div>
-    Show Selected Deck : {{selectedCardsString}}
+</mat-card-content>
+<div class="button">
+  <mat-spinner *ngIf="showSpinner"></mat-spinner>
+  <div *ngIf="!showSpinner">
+    <button mat-raised-button color="primary" [disabled]="selectedCards.length == 0" (click)="onSubmit()">Submit</button>
+  </div>
+  <div *ngIf="!showSpinner">
+    <button mat-raised-button color="primary" [disabled]="selectedCardsString.length == 0" (click)="onReset()">Try Again</button>
+
+  </div>
+
+</div>
+
+  <div *ngIf="!showSpinner">
+    <h3>Selected Cards from Deck :<b>{{selectedCardsString}}</b> </h3>
 <br>
-    Show Sorted Deck Of Card:  {{sortedCards}}
+<h3>Sorted Cards :  <b>{{sortedCards}}</b></h3>
   </div>
 
 
-
-</div>
-<br><br>
-<div class="button">
-  <button mat-raised-button color="primary" [disabled]="selectedCards.length == 0" (click)="onSubmit()">Submit</button>
-</div>
 </mat-card>
+
 

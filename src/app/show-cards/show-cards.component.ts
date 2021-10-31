@@ -20,6 +20,9 @@ export class ShowCardsComponent implements OnInit {
   constructor(private service:DeckCardsService) { }
   
   selectedLevel:string='';
+  sortedCardsString:string='';
+  showSpinner=false;
+
   ngOnInit() {
     this.service.getAllCards().subscribe(data=>{
       this.deckOfCardList=data;
@@ -32,12 +35,16 @@ export class ShowCardsComponent implements OnInit {
     if(this.selectedCards==[]){
       this.selectedLevel='';
     }else{
+      this.showSpinner=true;
+      setTimeout(() => {
+        this.showSpinner=false;
+      }, 500);
       this.service.getSortedValues(this.selectedCards).subscribe(data=>{
         this.sortedCards=data;
       })}
     
-    
-    console.log(this.sortedCards);
+      // this.sortedCardsString=this.sortedCards.join(',');
+
   }
   selectedCardsString:string='';
   onSelect(event:any) {
@@ -50,8 +57,12 @@ export class ShowCardsComponent implements OnInit {
         this.selectedCards = this.selectedCards.filter((d: any) => d !== event.source.value);
         this.selectedCardsString=this.selectedCards.join(',');
     }
-    // console.log(this.cardForm);
-    // console.log(this.selectedCards);
   }
+}
+onReset(){
+  this.cardForm.reset();
+  this.sortedCards=[];
+  this.selectedCards=[];
+  this.selectedCardsString='';
 }
 }
