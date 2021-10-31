@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/3f0cebea-4eda-4ce2-94fd-d58c9f787987/resourceGroups/DeckUI/providers/Microsoft.Web/sites/DeckUI",
+    "appService.deploySubpath": "dist\\DeckOfCardsUI"
+}
