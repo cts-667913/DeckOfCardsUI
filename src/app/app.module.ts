@@ -12,12 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { ShowSortedListComponent } from './show-sorted-list/show-sorted-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShowCardsComponent,
-    ShowSortedListComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,10 @@ import { ShowSortedListComponent } from './show-sorted-list/show-sorted-list.com
     MatCardModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    NgbModule,
+    MatListModule ,
+    MatButtonModule
 
   ],
   providers: [DeckCardsService],

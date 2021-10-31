@@ -12,12 +12,14 @@ import { DeckCardsService } from 'src/deck-cards.service';
 export class ShowCardsComponent implements OnInit {
   allCards:any;
 
-  toppings = new FormControl();
+  cardForm = new FormControl();
   deckOfCardList: any;
   selectedCards: any = [];
 
   sortedCards:any=[];
   constructor(private service:DeckCardsService) { }
+  
+  selectedLevel:string='';
   ngOnInit() {
     this.service.getAllCards().subscribe(data=>{
       this.deckOfCardList=data;
@@ -27,22 +29,29 @@ export class ShowCardsComponent implements OnInit {
     
   }
   onSubmit(){
-    this.service.getSortedValues(this.selectedCards).subscribe(data=>{
-      this.sortedCards=data;
-    })
+    if(this.selectedCards==[]){
+      this.selectedLevel='';
+    }else{
+      this.service.getSortedValues(this.selectedCards).subscribe(data=>{
+        this.sortedCards=data;
+      })}
+    
+    
     console.log(this.sortedCards);
-    this.toppings.reset();
   }
+  selectedCardsString:string='';
   onSelect(event:any) {
     if (event.isUserInput) {
       if (event.source.selected) {
         this.selectedCards.push(event.source.value);
+        this.selectedCardsString=this.selectedCards.join(',');
+
       } else {
-        this.selectedCards = this.selectedCards.filter((d: any) => d !== event.source.value)
+        this.selectedCards = this.selectedCards.filter((d: any) => d !== event.source.value);
+        this.selectedCardsString=this.selectedCards.join(',');
     }
-    console.log(this.selectedCards);
+    // console.log(this.cardForm);
+    // console.log(this.selectedCards);
   }
 }
-
-
 }
