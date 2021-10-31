@@ -1,0 +1,54 @@
+<!-- 
+    <div class="card">
+        <div class="header">
+          <h2>My Headline</h2>
+        </div>
+        <hr>
+        <div class="body">
+          <select>
+            <option *ngFor="let arr of arrayCards" [value]="arr"></option>
+          </select>
+             
+          <p>
+          </p>
+          <ng-content></ng-content>
+        </div>
+        <hr>
+        <div class="footer">
+          <div>My Footer 2</div>
+      </div>
+      
+</div> -->
+<mat-card>
+
+
+<div class="header">
+  <h1>Sorting Of Deck Of Cards</h1>
+</div>
+<div>
+  <div class="body">
+    <mat-form-field appearance="fill">
+      <mat-label>Select Cards</mat-label>
+      <div>
+      <mat-select [formControl]="cardForm" multiple>
+        <mat-option *ngFor="let deckOfCard of deckOfCardList" [value]="deckOfCard" (onSelectionChange)="onSelect($event)">{{deckOfCard}}</mat-option>
+      </mat-select>
+    </div>
+    </mat-form-field>
+  </div>
+  
+  <div>
+    Show Selected Deck : {{selectedCardsString}}
+<br>
+    Show Sorted Deck Of Card:  {{sortedCards}}
+  </div>
+
+
+
+</div>
+<br><br>
+<div class="button">
+  <button mat-raised-button color="primary" [disabled]="selectedCards.length == 0" (click)="onSubmit()">Submit</button>
+</div>
+</mat-card>
+
